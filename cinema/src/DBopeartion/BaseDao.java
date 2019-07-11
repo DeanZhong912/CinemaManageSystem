@@ -24,8 +24,8 @@ public class BaseDao {
      */
     public static void init(){
         Properties params=new Properties();
-        String configFile = "databaseForSqlite.properties";//配置文件路径
-        //String configFile = "database.properties";//配置文件路径
+       // String configFile = "databaseForSqlite.properties";//配置文件路径
+        String configFile = "database.properties";//配置文件路径
         //加载配置文件到输入流中
         InputStream is=BaseDao.class.getClassLoader().getResourceAsStream(configFile);
         if(is!=null) {
@@ -41,10 +41,10 @@ public class BaseDao {
             DBNAME=params.getProperty("user");
             DBPASS=params.getProperty("password");
         }else {
-            DRIVER="org.sqlite.JDBC";
-            URL="jdbc:sqlite:testDB.db";
-            DBNAME="";
-            DBPASS="";
+            DRIVER="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+            URL="jdbc:sqlserver://localhost:1433;database=cinema";
+            DBNAME="sa";
+            DBPASS="gf981026";
         }
     }
     /**
