@@ -43,10 +43,10 @@ public class Customservice extends service implements ticket {
                 "where Movie_name like ?";
         String[] param={"%"+movie_name+"%"};
         List<Show> showList=ticket.getShow(sql,param);
-        System.out.println("序号：\t电影名：\t厅号：\t时间：");
+        System.out.println("序号\t\t\t电影名\t\t\t\t厅号\t\t时间");
         for(i=0;i<showList.size();i++){
             Show show=showList.get(i);
-            System.out.println((i+1)+"\t"+movie_name+"\t"+show.getHall_id()+"号厅\t"+show.getShow_time());
+            System.out.format("%-8d\t%-14s\t%-3s\t%-26s\n",(i+1),movie_name,show.getHall_id()+"号厅",show.getShow_time());
         }
         int choice;
         while (true) {
@@ -248,10 +248,10 @@ public class Customservice extends service implements ticket {
             System.out.println("没有可退的票哦~");
             return;
         }
-        System.out.println("序号：\t电影名：\t厅号：\t排：\t列: \t时间：");
+        System.out.println("序号\t\t\t电影名\t\t\t\t厅号\t\t排\t\t列\t\t时间");
         for(int i=0;i<arrangeList.size();i++){
             Arrange arrange=arrangeList.get(i);
-            System.out.println((i+1)+"\t"+movie_name+"\t"+arrange.getHall_id()+"号厅\t第"+arrange.getLine()+"排\t第"+arrange.getRow()+"列\t"+arrange.getArrange_time());
+            System.out.format("%-8d\t%-14s\t%-3s\t%-3s\t%-3s\t%-26s\n",(i+1),movie_name,arrange.getHall_id()+"号厅","第"+arrange.getLine()+"排","第"+arrange.getRow()+"列",arrange.getArrange_time());
         }
         System.out.println("请输入退票序号");
         int c = input.nextInt();
@@ -303,10 +303,10 @@ public class Customservice extends service implements ticket {
             System.out.println("没有可改的票哦~");
             return;
         }
-        System.out.println("序号：\t电影名：\t厅号：\t排：\t列: \t时间：");
+        System.out.println("序号\t\t\t电影名\t\t\t\t厅号\t\t排\t\t列\t\t时间");
         for(int i=0;i<arrangeList.size();i++){
             Arrange arrange=arrangeList.get(i);
-            System.out.println((i+1)+"\t"+movie_name+"\t"+arrange.getHall_id()+"号厅\t第"+arrange.getLine()+"排\t第"+arrange.getRow()+"列\t"+arrange.getArrange_time());
+            System.out.format("%-8d\t%-14s\t%-3s\t%-3s\t%-3s\t%-26s\n",(i+1),movie_name,arrange.getHall_id()+"号厅","第"+arrange.getLine()+"排","第"+arrange.getRow()+"列",arrange.getArrange_time());
         }
         System.out.println("选择要改签的票序号");
         int c = input.nextInt();
@@ -321,10 +321,10 @@ public class Customservice extends service implements ticket {
             String[] param={movie_name};
             List<Show> showList=ticket.getShow(sql,param);
             //预定电影票走一波
-            System.out.println("序号：\t电影名：\t厅号：\t时间：");
+            System.out.println("序号\t\t\t电影名\t\t\t\t厅号\t\t时间");
             for(int i=0;i<showList.size();i++){
                 Show show=showList.get(i);
-                System.out.println((i+1)+"\t"+movie_name+"\t"+show.getHall_id()+"号厅\t"+show.getShow_time());
+                System.out.format("%-8d\t%-14s\t%-3s\t%-26s\n",(i+1),movie_name,show.getHall_id()+"号厅",show.getShow_time());
             }
             System.out.println("请选择场次（填序号）：");
             int choice=input.nextInt();

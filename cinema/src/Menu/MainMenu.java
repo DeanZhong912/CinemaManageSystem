@@ -1,8 +1,13 @@
 package Menu;
 import Service.impl.service;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.*;
 import User.*;
+
+import javax.swing.*;
+
 /**
  * Created by diandian on 2019/7/6.
  */
@@ -10,6 +15,7 @@ import User.*;
 public class MainMenu {
     public User user = new User();
     Scanner input = new Scanner(System.in);
+
     public void menu(){
         if(!user.init()){
             System.out.println("初始化失败！");

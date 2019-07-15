@@ -15,4 +15,5 @@ public interface ChangeMovieDao {
     public abstract int updateMovie(String sql,Object[] param);
 
     public abstract List<Movie> getAllMovie();
+    public abstract Movie getMovie(Object[] param);
 }

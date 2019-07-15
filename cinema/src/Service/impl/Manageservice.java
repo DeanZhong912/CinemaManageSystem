@@ -73,9 +73,10 @@ public class Manageservice extends service implements ChangeShow, ChangeMovie{
         int movie_id=input.nextInt();
         Movie temp=new Movie();
         temp.setMovie_id(movie_id);
-        String sql = "delete from Movie where Movie_id=?";
+        ChangeMovieDao changeMovieDaoimpl=new ChangeMovieDaoimpl();
         Object[] param={temp.getMovie_id()};
-        ChangeMovieDaoimpl changeMovieDaoimpl=new ChangeMovieDaoimpl();
+        temp=changeMovieDaoimpl.getMovie(param);
+        String sql = "delete from Movie where Movie_id=?";
         int count=changeMovieDaoimpl.updateMovie(sql,param);
         if(count>0)
             System.out.println("成功删除："+temp.getMovie_name()+"影片");
@@ -215,13 +216,13 @@ public class Manageservice extends service implements ChangeShow, ChangeMovie{
 
 
     public void printAllUser(){
-        System.out.println("序号\t用户名\t密码\t手机号\t用户类型");
+        System.out.println("序号\t\t\t用户名\t\t\t\t\t密码\t\t\t\t\t\t手机号\t\t\t用户类型");
         UserDao userDao = new UserDaoimpl();
         List<Auident> auidentsList = userDao.getAllUser();
         for(int i=0;i<auidentsList.size();i++){
             Auident auident = new Auident();
             auident = auidentsList.get(i);
-            System.out.println(auident.getAud_id()+"\t"+auident.getAud_name()+"\t"+auident.getAid_password()+"\t"+auident.getAud_tel()+"\t"+auident.getAud_type());
+            System.out.format("%-8d\t%-20s\t%-20s\t%-15s\t%-10s\n",auident.getAud_id(),auident.getAud_name(),auident.getAid_password(),auident.getAud_tel(),auident.getAud_type());
         }
 
     }

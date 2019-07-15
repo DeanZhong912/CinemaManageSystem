@@ -58,4 +58,38 @@ public class ChangeMovieDaoimpl extends BaseDao implements ChangeMovieDao {
         }
         return movieList;
     }
+
+    @Override
+    public Movie getMovie(Object[] param) {
+        Movie movie=new Movie();
+        String sql="select * from Movie where Movie_id=?";
+        try{
+            conn=getConn();
+            pstmt=conn.prepareStatement(sql);
+            if(param!=null){
+                for(int i=0;i<param.length;i++) {
+                    pstmt.setObject(i+1,param[i]);
+                }
+            }
+            rs=pstmt.executeQuery();
+            while(rs.next()){
+                movie.setMovie_id(rs.getInt(1));
+                movie.setMovie_name(rs.getString(2));
+                movie.setMovie_baseprice(rs.getFloat(3));
+                movie.setMovie_type(rs.getString(4));
+                movie.setMovie_loc(rs.getString(5));
+                movie.setMovie_director(rs.getString(6));
+                movie.setMovie_starttime(rs.getTimestamp(7));
+                movie.setMovie_endtime(rs.getTimestamp(8));
+                movie.setLast_time(rs.getInt(9));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }finally {
+            super.closeAll(conn,pstmt,rs);
+        }
+        return movie;
+    }
 }

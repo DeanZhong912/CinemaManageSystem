@@ -57,10 +57,10 @@ public class User {
         else if(!map.get(username).getAid_password().equals(password))
         {
             System.out.println("密码错误！重新输入");
-            password=scanner.nextLine();
+            password=scanner.next();
             if(!map.get(username).getAid_password().equals(password)){
                 System.out.println("密码错误！重新输入");
-                password=scanner.nextLine();
+                password=scanner.next();
                 if(!map.get(username).getAid_password().equals(password)) {
                     System.out.println("输入错误三次，本次登陆失败");
                     return false;
